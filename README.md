@@ -64,40 +64,24 @@ No external dependencies – runs directly in browser.
 
 ## 📂 Project Structure
 📦 image-compression-comparison
- ┣ 📜 index.html          # Main web interface
- ┣ 📜 style.css           # Styling for UI
- ┣ 📜 script.js           # Orchestrates compression workflow
- ┣ 📂 algorithms/         # Compression algorithm implementations
- ┃ ┣ 📜 huffman.js        # Huffman Coding implementation
- ┃ ┣ 📜 arithmetic.js     # Arithmetic Coding implementation
- ┃ ┗ 📜 ans.js            # Asymmetric Numeral Systems implementation
- ┣ 📂 assets/
- ┃ ┗ 📜 sample.jpg        # Example test image
- ┣ 📂 docs/
- ┃ ┗ 📜 demo.png          # Screenshot for README
- ┗ 📜 README.md           # Documentation
-
-# 📘 Compression Algorithms
-
-This project demonstrates **three key entropy coding algorithms**: Huffman, Arithmetic, and ANS.  
-Below are their **concepts, formulas, and pseudocode**.
-
----
-
-## 1️⃣ Huffman Coding
-**Concept:** Assign shorter binary codes to frequent symbols and longer codes to rare ones, forming a **prefix-free code**.
-
-### 🔹 Formula
-- **Entropy (lower bound of average length):**  
-\[
-H(X) = - \sum_{i=1}^{n} p(x_i) \log_2 p(x_i)
-\]
-
-- **Expected code length:**  
-\[
-L = \sum_{i=1}^{n} p(x_i) \cdot l(x_i)
-\]  
-where \(l(x_i)\) is the code length of symbol \(x_i\).
-
-### 🔹 Pseudocode
+Compression-Algorithms-Comparison/
+│
+├── data/                     # Input files to compress
+│   ├── sample1.txt
+│   ├── sample2.txt
+│
+├── results/                  # Output compressed files & performance results
+│   ├── ans_results.txt
+│   ├── huffman_results.txt
+│   ├── arithmetic_results.txt
+│
+├── src/                      # Source code implementations
+│   ├── ans.py
+│   ├── huffman.py
+│   ├── arithmetic.py
+│   ├── utils.py
+│
+├── README.md                 # Documentation (algorithms + usage + results)
+├── requirements.txt          # Dependencies
+└── main.py                   # Entry point to run experiments
 
