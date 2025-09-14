@@ -47,7 +47,6 @@ Here’s an example of compression results for a sample image:
 ## 🖼️ UI Preview
 *(Example screenshot of the comparison table)*  
 
-![Demo Screenshot]("C:\Users\CHARU LATHA\Pictures\Screenshots\Screenshot 2025-09-14 062057.png")  
 <img width="2048" height="1242" alt="Screenshot 2025-09-14 062057" src="https://github.com/user-attachments/assets/27029308-a645-4b14-b082-9b80340f1f33" />
 
 ---
@@ -64,3 +63,41 @@ No external dependencies – runs directly in browser.
 ---
 
 ## 📂 Project Structure
+📦 image-compression-comparison
+ ┣ 📜 index.html          # Main web interface
+ ┣ 📜 style.css           # Styling for UI
+ ┣ 📜 script.js           # Orchestrates compression workflow
+ ┣ 📂 algorithms/         # Compression algorithm implementations
+ ┃ ┣ 📜 huffman.js        # Huffman Coding implementation
+ ┃ ┣ 📜 arithmetic.js     # Arithmetic Coding implementation
+ ┃ ┗ 📜 ans.js            # Asymmetric Numeral Systems implementation
+ ┣ 📂 assets/
+ ┃ ┗ 📜 sample.jpg        # Example test image
+ ┣ 📂 docs/
+ ┃ ┗ 📜 demo.png          # Screenshot for README
+ ┗ 📜 README.md           # Documentation
+
+# 📘 Compression Algorithms
+
+This project demonstrates **three key entropy coding algorithms**: Huffman, Arithmetic, and ANS.  
+Below are their **concepts, formulas, and pseudocode**.
+
+---
+
+## 1️⃣ Huffman Coding
+**Concept:** Assign shorter binary codes to frequent symbols and longer codes to rare ones, forming a **prefix-free code**.
+
+### 🔹 Formula
+- **Entropy (lower bound of average length):**  
+\[
+H(X) = - \sum_{i=1}^{n} p(x_i) \log_2 p(x_i)
+\]
+
+- **Expected code length:**  
+\[
+L = \sum_{i=1}^{n} p(x_i) \cdot l(x_i)
+\]  
+where \(l(x_i)\) is the code length of symbol \(x_i\).
+
+### 🔹 Pseudocode
+
