@@ -64,6 +64,27 @@ No external dependencies – runs directly in browser.
 
 ## 📂 Project Structure
 <img width="880" height="840" alt="image" src="https://github.com/user-attachments/assets/73923685-8d6d-4364-8ac1-7a1a1100c382" />
+---
+
+## 👩‍💻 Authors
+
+- **Chaarulatha J**
+- **Bharath Balaji S**
+- **Adharsh Aravinth**
+- **Yogalakshmi G**
+- **Rahul J**
+
+---
+
+## 📜 License & Copyright
+
+© 2025 Chaarulatha J, Bharath Balaji S, Adharsh Aravinth, Yogalakshmi G, Rahul J.  
+All rights reserved.
+
+This project is licensed for **educational and research purposes only**.  
+Unauthorized commercial use, distribution, or modification is prohibited without prior permission from the authors.
+
+
 
 
 
