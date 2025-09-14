@@ -63,25 +63,7 @@ No external dependencies – runs directly in browser.
 ---
 
 ## 📂 Project Structure
-📦 image-compression-comparison
-image-compression-comparison/
-│
-├── data/ # Input files to compress
-│ ├── sample1.txt
-│ ├── sample2.txt
-│
-├── results/ # Output compressed files & performance results
-│ ├── ans_results.txt
-│ ├── huffman_results.txt
-│ ├── arithmetic_results.txt
-│
-├── src/ # Source code implementations
-│ ├── ans.py
-│ ├── huffman.py
-│ ├── arithmetic.py
-│ ├── utils.py
-│
-├── README.md # Documentation (algorithms + usage + results)
-├── requirements.txt # Dependencies
-└── main.py # Entry point to run experiments
+<img width="880" height="840" alt="image" src="https://github.com/user-attachments/assets/73923685-8d6d-4364-8ac1-7a1a1100c382" />
+
+
 
