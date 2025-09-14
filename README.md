@@ -47,7 +47,8 @@ Here’s an example of compression results for a sample image:
 ## 🖼️ UI Preview
 *(Example screenshot of the comparison table)*  
 
-![Demo Screenshot](docs/demo.png)  
+![Demo Screenshot]("C:\Users\CHARU LATHA\Pictures\Screenshots\Screenshot 2025-09-14 062057.png")  
+<img width="2048" height="1242" alt="Screenshot 2025-09-14 062057" src="https://github.com/user-attachments/assets/27029308-a645-4b14-b082-9b80340f1f33" />
 
 ---
 
