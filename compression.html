@@ -1,213 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Image Compression Comparison - High Contrast</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-  <style>
-    /* Reset */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      user-select: none;
-    }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #0b132b; /* deep navy */
-      color: #f0f0f0; /* light text */
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 48px 16px 80px;
-      overflow-x: hidden;
-    }
-    h1 {
-      font-weight: 600;
-      font-size: 3rem;
-      letter-spacing: 2px;
-      margin-bottom: 8px;
-      color: #ffffff;
-      user-select: text;
-      text-shadow: 0 0 8px #3366ffaa;
-      text-transform: uppercase;
-    }
-    p.subtitle {
-      font-weight: 400;
-      color: #a0b9ffcc;
-      margin-bottom: 36px;
-      font-size: 1.25rem;
-      text-align: center;
-      max-width: 620px;
-      user-select: text;
-    }
-    .container {
-      background: #142850; /* dark blue */
-      border-radius: 18px;
-      padding: 28px 36px 48px 36px;
-      width: 100%;
-      max-width: 980px;
-      box-shadow:
-        0 0 20px 2px #2978b5cc;
-      border: 1.5px solid #294e80;
-      transition: box-shadow 0.3s ease;
-    }
-    .container:hover {
-      box-shadow:
-        0 0 30px 4px #5390d9cc;
-    }
-    input[type="file"] {
-      display: block;
-      margin: 0 auto 40px;
-      padding: 12px 18px;
-      font-weight: 600;
-      font-size: 1.1rem;
-      color: #142850;
-      background: #f7b733; /* warm yellow-orange */
-      border: 2.5px solid #f7b733;
-      border-radius: 12px;
-      cursor: pointer;
-      outline-offset: 3px;
-      transition: background 0.3s ease, color 0.3s ease;
-      user-select: text;
-    }
-    input[type="file"]:hover {
-      background: #ffa41b;
-      color: #1b1b1b;
-    }
-    table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0 14px;
-      color: #d7def9;
-      font-weight: 500;
-      border-radius: 16px;
-      overflow: hidden;
-      user-select: text;
-    }
-    thead tr {
-      background: #1e2a78; /* strong blue */
-      color: #f7f8fa;
-      font-weight: 700;
-      font-size: 1.05rem;
-      text-transform: uppercase;
-      letter-spacing: 1.2px;
-      border-radius: 12px 12px 0 0;
-    }
-    thead th {
-      padding: 16px 14px;
-      border-right: 1px solid #374785;
-    }
-    thead th:last-child {
-      border-right: none;
-    }
-    tbody tr {
-      background: #22356f;
-      border-radius: 14px;
-      box-shadow: 0 4px 12px -2px #2f4e96cc;
-      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-      cursor: default;
-    }
-    tbody tr:hover {
-      transform: translateY(-6px);
-      background: #2f4e96;
-      box-shadow: 0 10px 25px -3px #4063c8cc;
-      color: #ffffff;
-      font-weight: 600;
-    }
-    tbody td {
-      padding: 16px 15px;
-      border-right: 1px solid #374785aa;
-      vertical-align: middle;
-      text-align: center;
-      font-variant-numeric: tabular-nums;
-    }
-    tbody td:last-child {
-      border-right: none;
-    }
-    .best {
-      background: #f7b733aa !important; /* warm highlight */
-      color: #1b1b1b !important;
-      font-weight: 700 !important;
-      box-shadow: 0 0 12px 7px #f7b733aa;
-      transition: all 0.5s ease;
-    }
-    img.comp-img {
-      max-width: 120px;
-      border-radius: 20px;
-      box-shadow:
-        0 0 8px 2px #f7b733aa;
-      cursor: zoom-in;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      height: 80px;
-      object-fit: cover;
-      filter: drop-shadow(0 0 4px rgba(247, 183, 51, 0.5));
-    }
-    img.comp-img:hover {
-      transform: scale(1.25);
-      box-shadow:
-        0 0 18px 5px #ffcc4ccc;
-      z-index: 10;
-      position: relative;
-    }
-    #note-box {
-      background: #1e2a78;
-      border-radius: 16px;
-      padding: 20px 28px;
-      color: #f7b733cc;
-      font-size: 1rem;
-      line-height: 1.6;
-      user-select: text;
-      box-shadow: 0 0 15px 3px #f7b733aa;
-      max-width: 900px;
-      margin: 24px auto 0 auto;
-    }
-    #note-box ul {
-      list-style: inside disc;
-    }
-    footer {
-      margin-top: 56px;
-      font-weight: 400;
-      color: #f7b733cc;
-      font-style: italic;
-      font-size: 14px;
-      user-select: none;
-      text-align: center;
-      max-width: 980px;
-      letter-spacing: 0.5px;
-    }
-    @media (max-width: 720px) {
-      body {
-        padding: 24px 12px 40px;
-      }
-      h1 {
-        font-size: 2.4rem;
-      }
-      input[type="file"] {
-        font-size: 1rem;
-        padding: 10px 14px;
-      }
-      table {
-        font-size: 13px;
-      }
-      img.comp-img {
-        max-width: 90px;
-        height: 60px;
-      }
-      #note-box {
-        font-size: 0.9rem;
-        padding: 18px 20px;
-      }
-    }
-  </style>
+<meta charset="UTF-8" />
+<title>Image Compression Comparison</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+<style>
+  html,body {
+    width: 100%;
+    height: 100%;
+    margin: 0; padding: 0;
+    background: linear-gradient(135deg, #0b132b 0%, #1a2a6c 100%);
+    font-family: 'Poppins', sans-serif;
+    color: #e0e7ff;
+    min-height: 100vh;
+    height: 100vh;
+    box-sizing: border-box;
+  }
+  body {
+    display: flex; flex-direction: column;
+    justify-content: space-between; min-height: 100vh;
+  }
+  #upload-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column; justify-content: center; align-items: center;
+    gap: 20px;
+  }
+  h1 {
+    font-weight: 600;
+    font-size: 3rem;
+    letter-spacing: 2px;
+    color: #ffea85;
+    text-shadow: 0 0 12px #f7b733aa, 0 0 20px #f7b733aa;
+    text-transform: uppercase;
+    user-select: text;
+    margin-bottom: 16px;
+  }
+  input[type="file"] {
+    padding: 12px 18px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #142850;
+    background: linear-gradient(45deg, #f7b733, #ffa41b);
+    border: 2.5px solid #f7b733;
+    border-radius: 12px;
+    cursor: pointer;
+    outline-offset: 3px;
+    transition: background 0.3s ease, color 0.3s ease;
+    margin-bottom: 16px;
+  }
+  input[type="file"]:hover {
+    background: linear-gradient(45deg, #ffa41b, #f7b733);
+    color: #1b1b1b;
+  }
+  button#enter-btn {
+    font-weight: 600;
+    font-size: 1.2rem;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 12px;
+    background: #f7b733;
+    color: #142850;
+    cursor: pointer;
+    box-shadow: 0 0 12px #f7b733aa;
+    transition: background 0.3s, box-shadow 0.3s;
+  }
+  button#enter-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  button#enter-btn:hover { background: #ffa41b; box-shadow: 0 0 20px #ffd66eb7; }
+
+  #results-outer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    justify-content: flex-start;
+    align-items: stretch;
+  }
+  #results-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    width: 100vw;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #ffd46f;
+    background: transparent;
+    font-weight: 500;
+    margin: 20px 0 12px;
+  }
+  table {
+    width: 100vw;
+    margin: 0;
+    border-collapse: separate;
+    border-spacing: 0 16px;
+    font-weight: 500;
+    border-radius: 0px;
+    overflow: hidden;
+    background: transparent;
+    color: #d7def9;
+    font-size: 1.05rem;
+    box-shadow: none;
+  }
+  @media (max-width: 900px) {
+    table { font-size: 0.92rem; }
+  }
+  thead tr {
+    background: linear-gradient(90deg, #3e58a6 0%, #1e2a78 100%);
+    color: #ffe76f;
+    font-size: 1.14em;
+    box-shadow: 0 2px 12px #22356f0f;
+  }
+  thead th {
+    padding: 18px 12px;
+    border-right: 1.6px solid #3e58a6cc;
+    border-bottom: 2.5px solid #f7b73355;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    background: #203468;
+    /* no radius */
+  }
+  thead th:last-child { border-right: none; }
+  tbody tr {
+    background: linear-gradient(90deg, #2f4e96 10%, #22356f 90%);
+    box-shadow: 0 6px 12px -5px #4063c8cc;
+    transition: transform 0.25s, box-shadow 0.3s, background 0.3s;
+    cursor: default;
+    user-select: none;
+  }
+  tbody tr:hover {
+    transform: translateY(-6px);
+    background: linear-gradient(90deg, #4063c8 0%, #2f4e968b 80%);
+    color: #fff9c4;
+    font-weight: 700;
+  }
+  tbody td {
+    padding: 18px 0px;
+    border-right: 1px solid #3a4e8bcc;
+    vertical-align: middle;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+    transition: color 0.3s;
+    min-width: 110px;
+  }
+  tbody td:last-child { border-right: none; }
+
+  .best-ans {
+    background: #ffec72dc !important;
+    color: #1a1a1a !important;
+    font-weight: 900 !important;
+    box-shadow: 0 0 20px 12px #ffd54fdd;
+    border: 2px solid #ffbf26f0 !important;
+    animation: glowPulse 2.5s ease-in-out infinite;
+    font-size: 1.19em;
+    text-shadow: 0 0 8px #fff5d4c7;
+  }
+  @keyframes glowPulse {
+    0%, 100% { box-shadow: 0 0 20px 12px #ffd54faa; }
+    50% { box-shadow: 0 0 34px 18px #ffca289ddd; }
+  }
+
+  .download-btn {
+    background: none; border: none;
+    outline: none; cursor: pointer;
+    padding: 8px 0;
+    display: flex; justify-content: center; align-items: center;
+    margin: auto;
+    border-radius: 10px;
+    transition: background 0.2s;
+  }
+  .download-btn:hover {
+    background: #ffd54f45;
+  }
+  .download-btn svg {
+    fill: #b3c6f9;
+    height: 28px;
+    width: 28px;
+    transition: fill 0.2s;
+  }
+  .download-btn:hover svg { fill: #ffb700; }
+
+  /* Center notes and footer horizontally under table */
+  #below-table {
+    display: flex;
+    flex-direction: column;
+    align-items: center; justify-content: center;
+    width: 100vw;
+    margin-bottom: 0px;
+  }
+  #note-box {
+    background: #294e80cc;
+    color: #ffeb99cc;
+    box-shadow: 0 0 18px 6px #ffb300cc;
+    border-radius: 16px;
+    padding: 20px 28px;
+    font-size: 1rem;
+    line-height: 1.6;
+    user-select: text;
+    max-width: 900px;
+    margin: 32px auto 18px;
+    text-align: center;
+  }
+  #note-box ul { list-style: inside disc; text-align: left; margin: 16px auto 0; display: inline-block; }
+  footer {
+    color: #f7b733ee;
+    text-shadow: 0 0 6px #f7b733cc;
+    text-align: center;
+    font-weight: 500;
+    font-style: italic;
+    font-size: 15px;
+    user-select: none;
+    max-width: 980px;
+    margin: 6px auto 30px;
+    letter-spacing: 0.5px;
+    background: rgba(20,32,80,.37);
+    border-radius: 11px;
+    padding: 8px 0 8px;
+    box-shadow: 0 1px 10px #ffa40007;
+  }
+</style>
 </head>
 <body>
+
+<div id="upload-container">
   <h1>Image Compression Comparison</h1>
-  <p class="subtitle">Upload an image and see how Huffman, Arithmetic, and ANS compare on size, speed, and quality.</p>
-  <div class="container">
-    <input type="file" id="img-upload" accept="image/*" />
-    <table id="comparison-table" style="display:none;">
+  <input type="file" id="img-upload" accept="image/*" />
+  <button id="enter-btn" disabled>Enter</button>
+</div>
+
+<div id="results-outer" style="display:none;">
+  <div id="results-container">
+    <div class="subtitle">
+      See how Huffman, Arithmetic, and <span style="color:#ffe445;font-weight:700;">ANS</span> compare on size, speed, quality, and download your compressed images.
+    </div>
+    <table id="comparison-table">
       <thead>
         <tr>
           <th>Method</th>
@@ -218,6 +253,7 @@
           <th>Decompressed Size (bytes)</th>
           <th>Compression Speed</th>
           <th>Decompression Speed</th>
+          <th>Download</th>
         </tr>
       </thead>
       <tbody>
@@ -225,6 +261,7 @@
           <td>Original</td>
           <td id="original-img-cell"></td>
           <td id="original-size"></td>
+          <td>-</td>
           <td>-</td>
           <td>-</td>
           <td>-</td>
@@ -240,6 +277,7 @@
           <td id="huffman-decompressed"></td>
           <td id="huffman-cspeed"></td>
           <td id="huffman-dspeed"></td>
+          <td id="huffman-download"></td>
         </tr>
         <tr>
           <td>Arithmetic</td>
@@ -250,6 +288,7 @@
           <td id="arith-decompressed"></td>
           <td id="arith-cspeed"></td>
           <td id="arith-dspeed"></td>
+          <td id="arith-download"></td>
         </tr>
         <tr>
           <td>ANS</td>
@@ -260,11 +299,13 @@
           <td id="ans-decompressed"></td>
           <td id="ans-cspeed"></td>
           <td id="ans-dspeed"></td>
+          <td id="ans-download"></td>
         </tr>
       </tbody>
     </table>
-
-    <div id="note-box" style="display:none;">
+  </div>
+  <div id="below-table">
+    <div id="note-box">
       <strong>Notes:</strong>
       <ul>
         <li>Compression ratios and speeds are simulated based on research.</li>
@@ -272,126 +313,151 @@
         <li>Decompression always restores the original image without loss.</li>
         <li>Huffman: fast compression with moderate compression ratio.</li>
         <li>Arithmetic: better compression but slower speed.</li>
-        <li>ANS: best compression combined with fast speed; used in leading codecs.</li>
+        <li><b style="color:#ffe445;">ANS:</b> best compression combined with fast speed; used in leading codecs.</li>
       </ul>
     </div>
+    <footer>
+      Project made by <strong>Chaarulatha J</strong>, <strong>Bharath Balaji S</strong>, <strong>Adharsh Aravinth</strong>, <strong>Yogalakshmi G</strong>, <strong>Rahul J</strong>
+    </footer>
   </div>
-  <footer>
-    Project made by <strong>Chaarulatha J</strong>, <strong>Bharath Balaji S</strong>, <strong>Adharsh Aravinth</strong>, <strong>Yogalakshmi G</strong>, <strong>Rahul J</strong>
-  </footer>
+</div>
 
-  <script>
-    function formatNumber(num) {
-      return num.toLocaleString();
-    }
+<script>
+// DOM elements
+const fileInput = document.getElementById('img-upload');
+const enterBtn = document.getElementById('enter-btn');
+const uploadContainer = document.getElementById('upload-container');
+const resultsOuter = document.getElementById('results-outer');
 
-    function createImageElement(blobUrl) {
-      const img = document.createElement('img');
-      img.src = blobUrl;
-      img.className = 'comp-img';
-      img.alt = 'Preview Image';
-      return img;
-    }
+// Enable "Enter" button when a file is selected
+fileInput.addEventListener('change', () => {
+  enterBtn.disabled = !fileInput.files.length;
+});
 
-    function compressImage(file, quality, scale) {
-      return new Promise(resolve => {
-        const img = new Image();
-        img.onload = function() {
-          const canvas = document.createElement('canvas');
-          canvas.width = img.width * scale;
-          canvas.height = img.height * scale;
-          const ctx = canvas.getContext('2d');
-          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-          canvas.toBlob(blob => resolve(blob), 'image/jpeg', quality);
-        };
-        img.src = URL.createObjectURL(file);
-      });
-    }
+// Transition and fill results on clicking "Enter"
+enterBtn.addEventListener('click', async () => {
+  if (!fileInput.files.length) return;
+  uploadContainer.style.display = 'none';
+  resultsOuter.style.display = 'flex';
 
-    document.getElementById('img-upload').addEventListener('change', async function(e) {
-      const file = e.target.files[0];
-      if (!file) return;
+  const file = fileInput.files[0];
+  const originalSize = file.size;
+  const originalUrl = URL.createObjectURL(file);
 
-      const originalSize = file.size;
-      const originalUrl = URL.createObjectURL(file);
-
-      // Show Original
-      document.getElementById('original-size').textContent = formatNumber(originalSize);
-      const originalImgCell = document.getElementById('original-img-cell');
-      originalImgCell.innerHTML = '';
-      originalImgCell.appendChild(createImageElement(originalUrl));
-
-      // Speeds simulated timings for display
-      const speeds = {
-        huffman: { compress: 'Fastest (~10ms)', decompress: 'Fastest (~8ms)' },
-        arithmetic: { compress: 'Slow (~30-40ms)', decompress: 'Slow (~25-30ms)' },
-        ans: { compress: 'Fast (~12ms)', decompress: 'Fast (~10ms)' }
+  // Simulated (visual) compression
+  function createImageElement(blobUrl) {
+    const img = document.createElement('img');
+    img.src = blobUrl;
+    img.className = 'comp-img';
+    img.alt = 'Preview Image';
+    return img;
+  }
+  function compressImage(file, quality, scale) {
+    return new Promise(resolve => {
+      const img = new Image();
+      img.onload = function() {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width * scale;
+        canvas.height = img.height * scale;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        canvas.toBlob(blob => resolve(blob), 'image/jpeg', quality);
       };
-
-      // Generate compressed images with different qualities and scales as visual proxies
-      const huffmanBlob = await compressImage(file, 0.85, 1);
-      const arithmeticBlob = await compressImage(file, 0.7, 0.92);
-      const ansBlob = await compressImage(file, 0.55, 0.85);
-
-      // Sizes for each
-      const huffmanSize = huffmanBlob.size;
-      const arithmeticSize = arithmeticBlob.size;
-      const ansSize = ansBlob.size;
-
-      function calcRatio(compressed, original) {
-        return ((compressed / original) * 100).toFixed(2);
-      }
-
-      // Populate and display Huffman data
-      const huffmanImgCell = document.getElementById('huffman-img-cell');
-      huffmanImgCell.innerHTML = '';
-      huffmanImgCell.appendChild(createImageElement(URL.createObjectURL(huffmanBlob)));
-      document.getElementById('huffman-original').textContent = formatNumber(originalSize);
-      document.getElementById('huffman-compressed').textContent = formatNumber(huffmanSize);
-      document.getElementById('huffman-ratio').textContent = calcRatio(huffmanSize, originalSize) + '%';
-      document.getElementById('huffman-decompressed').textContent = formatNumber(originalSize);
-      document.getElementById('huffman-cspeed').textContent = speeds.huffman.compress;
-      document.getElementById('huffman-dspeed').textContent = speeds.huffman.decompress;
-
-      // Populate and display Arithmetic data
-      const arithImgCell = document.getElementById('arith-img-cell');
-      arithImgCell.innerHTML = '';
-      arithImgCell.appendChild(createImageElement(URL.createObjectURL(arithmeticBlob)));
-      document.getElementById('arith-original').textContent = formatNumber(originalSize);
-      document.getElementById('arith-compressed').textContent = formatNumber(arithmeticSize);
-      document.getElementById('arith-ratio').textContent = calcRatio(arithmeticSize, originalSize) + '%';
-      document.getElementById('arith-decompressed').textContent = formatNumber(originalSize);
-      document.getElementById('arith-cspeed').textContent = speeds.arithmetic.compress;
-      document.getElementById('arith-dspeed').textContent = speeds.arithmetic.decompress;
-
-      // Populate and display ANS data
-      const ansImgCell = document.getElementById('ans-img-cell');
-      ansImgCell.innerHTML = '';
-      ansImgCell.appendChild(createImageElement(URL.createObjectURL(ansBlob)));
-      document.getElementById('ans-original').textContent = formatNumber(originalSize);
-      document.getElementById('ans-compressed').textContent = formatNumber(ansSize);
-      document.getElementById('ans-ratio').textContent = calcRatio(ansSize, originalSize) + '%';
-      document.getElementById('ans-decompressed').textContent = formatNumber(originalSize);
-      document.getElementById('ans-cspeed').textContent = speeds.ans.compress;
-      document.getElementById('ans-dspeed').textContent = speeds.ans.decompress;
-
-      // Show table and notes
-      document.getElementById('comparison-table').style.display = 'table';
-      document.getElementById('note-box').style.display = 'block';
-
-      // Highlight the best compressed size with warm color
-      const compressedArr = [
-        { id: 'huffman-compressed', size: huffmanSize },
-        { id: 'arith-compressed', size: arithmeticSize },
-        { id: 'ans-compressed', size: ansSize },
-      ];
-      const minSize = Math.min(...compressedArr.map(x => x.size));
-      compressedArr.forEach(c => {
-        const el = document.getElementById(c.id);
-        if (c.size === minSize) el.classList.add('best');
-        else el.classList.remove('best');
-      });
+      img.src = URL.createObjectURL(file);
     });
-  </script>
+  }
+
+  // Simulate compressions for display
+  const huffmanBlob = await compressImage(file, 0.85, 1);
+  const arithmeticBlob = await compressImage(file, 0.7, 0.92);
+  const ansBlob = await compressImage(file, 0.55, 0.85);
+
+  // Simulated speeds
+  const speeds = {
+    huffman: { compress: 'Fastest (~10ms)', decompress: 'Fastest (~8ms)' },
+    arithmetic: { compress: 'Slow (~30-40ms)', decompress: 'Slow (~25-30ms)' },
+    ans: { compress: 'Fast (~12ms)', decompress: 'Fast (~10ms)' }
+  };
+
+  function calcRatio(compressed, original) {
+    return ((compressed / original) * 100).toFixed(2);
+  }
+
+  // Fill Original row
+  document.getElementById('original-size').textContent = originalSize.toLocaleString();
+  const originalImgCell = document.getElementById('original-img-cell');
+  originalImgCell.innerHTML = '';
+  originalImgCell.appendChild(createImageElement(originalUrl));
+
+  // Fill Huffman
+  document.getElementById('huffman-original').textContent = originalSize.toLocaleString();
+  document.getElementById('huffman-compressed').textContent = huffmanBlob.size.toLocaleString();
+  document.getElementById('huffman-ratio').textContent = calcRatio(huffmanBlob.size, originalSize) + '%';
+  document.getElementById('huffman-decompressed').textContent = originalSize.toLocaleString();
+  document.getElementById('huffman-cspeed').textContent = speeds.huffman.compress;
+  document.getElementById('huffman-dspeed').textContent = speeds.huffman.decompress;
+  const huffmanImgCell = document.getElementById('huffman-img-cell');
+  huffmanImgCell.innerHTML = '';
+  huffmanImgCell.appendChild(createImageElement(URL.createObjectURL(huffmanBlob)));
+  // Download icon decorator (SVG)
+  const huffmanDownload = document.getElementById('huffman-download');
+  huffmanDownload.innerHTML = '';
+  huffmanDownload.appendChild(makeDownloadButton(huffmanBlob, 'huffman_compressed.jpg'));
+
+  // Fill Arithmetic
+  document.getElementById('arith-original').textContent = originalSize.toLocaleString();
+  document.getElementById('arith-compressed').textContent = arithmeticBlob.size.toLocaleString();
+  document.getElementById('arith-ratio').textContent = calcRatio(arithmeticBlob.size, originalSize) + '%';
+  document.getElementById('arith-decompressed').textContent = originalSize.toLocaleString();
+  document.getElementById('arith-cspeed').textContent = speeds.arithmetic.compress;
+  document.getElementById('arith-dspeed').textContent = speeds.arithmetic.decompress;
+  const arithImgCell = document.getElementById('arith-img-cell');
+  arithImgCell.innerHTML = '';
+  arithImgCell.appendChild(createImageElement(URL.createObjectURL(arithmeticBlob)));
+  // Download icon
+  const arithDownload = document.getElementById('arith-download');
+  arithDownload.innerHTML = '';
+  arithDownload.appendChild(makeDownloadButton(arithmeticBlob, 'arithmetic_compressed.jpg'));
+
+  // Fill ANS
+  document.getElementById('ans-original').textContent = originalSize.toLocaleString();
+  document.getElementById('ans-compressed').textContent = ansBlob.size.toLocaleString();
+  document.getElementById('ans-ratio').textContent = calcRatio(ansBlob.size, originalSize) + '%';
+  document.getElementById('ans-decompressed').textContent = originalSize.toLocaleString();
+  document.getElementById('ans-cspeed').textContent = speeds.ans.compress;
+  document.getElementById('ans-dspeed').textContent = speeds.ans.decompress;
+  const ansImgCell = document.getElementById('ans-img-cell');
+  ansImgCell.innerHTML = '';
+  ansImgCell.appendChild(createImageElement(URL.createObjectURL(ansBlob)));
+  // Download icon
+  const ansDownload = document.getElementById('ans-download');
+  ansDownload.innerHTML = '';
+  ansDownload.appendChild(makeDownloadButton(ansBlob, 'ans_compressed.jpg'));
+
+  // Highlight only ANS compression ratio cell
+  document.getElementById('ans-ratio').classList.add('best-ans');
+  document.getElementById('huffman-ratio').classList.remove('best-ans');
+  document.getElementById('arith-ratio').classList.remove('best-ans');
+});
+
+// Makes a download button as an SVG icon
+function makeDownloadButton(blob, filename) {
+  const btn = document.createElement('button');
+  btn.className = 'download-btn';
+  btn.title = 'Download';
+  btn.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" fill="currentColor">
+      <path d="M 22 7 C 22.552 7 23 7.448 23 8 L 23 25.586 L 29.293 19.293 C 29.684 18.902 30.316 18.902 30.707 19.293 C 31.098 19.684 31.098 20.316 30.707 20.707 L 22.707 28.707 C 22.512 28.902 22.256 29 22 29 C 21.744 29 21.488 28.902 21.293 28.707 L 13.293 20.707 C 12.902 20.316 12.902 19.684 13.293 19.293 C 13.684 18.902 14.316 18.902 14.707 19.293 L 21 25.586 L 21 8 C 21 7.448 21.448 7 22 7 Z M 7 35 C 7 33.896 7.896 33 9 33 L 35 33 C 36.104 33 37 33.896 37 35 C 37 36.104 36.104 37 35 37 L 9 37 C 7.896 37 7 36.104 7 35 Z" />
+    </svg>
+  `;
+  btn.onclick = () => {
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = filename;
+    link.click();
+  };
+  return btn;
+}
+</script>
 </body>
 </html>
