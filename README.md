@@ -47,7 +47,15 @@ Here’s an example of compression results for a sample image:
 ## 🖼️ UI Preview
 *(Example screenshot of the comparison table)*  
 
-<img width="2048" height="1242" alt="Screenshot 2025-09-14 062057" src="https://github.com/user-attachments/assets/27029308-a645-4b14-b082-9b80340f1f33" />
+<img width="940" height="427" alt="image" src="https://github.com/user-attachments/assets/42049d67-7c4f-4caf-9b5a-e28dd12a3095" />
+After selecting the respective image :
+<img width="940" height="455" alt="image" src="https://github.com/user-attachments/assets/a6bbb28b-ad5e-44e6-87f6-8e1081d380d9" />
+When you click “Enter” , It opens a new page displaying the different compression types:
+<img width="940" height="486" alt="image" src="https://github.com/user-attachments/assets/b7ce6b22-69a0-48a2-88c3-b723ee09121f" />
+Now , The user can download the compressed file :
+<img width="940" height="553" alt="image" src="https://github.com/user-attachments/assets/81d9ba24-2319-46c0-8e84-d0649603fc11" />
+<img width="940" height="367" alt="image" src="https://github.com/user-attachments/assets/1003cab7-8eb0-4f54-9a4b-ed189c21d259" />
+
 
 ---
 
